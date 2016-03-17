@@ -49,6 +49,7 @@ var H5P = H5P || {};
   H5P.Image.prototype.attach = function ($wrapper) {
     var self = this;
 
+    $('head').append('  <style>.h5p-interactive-video .h5p-dialog-titlebar { display: none; height: 0em; padding: 0em 0em 0em 0em; border-bottom: 0px solid #eee;}</style>');
     var link = $('<a>').attr('href', this.url).attr('target', "_blank");
     if (self.$img === undefined) {
       self.$img = $('<img>', {
