@@ -33,6 +33,8 @@ var H5P = H5P || {};
     if (params.title !== undefined) {
       this.title = params.title;
     }
+    if(params.linkWidget!== undefined && !!params.linkWidget.protocol && !!params.linkWidget.url)
+      this.url = params.linkWidget.protocol+params.linkWidget.url;
   };
 
   H5P.Image.prototype = Object.create(H5P.EventDispatcher.prototype);
@@ -47,6 +49,7 @@ var H5P = H5P || {};
   H5P.Image.prototype.attach = function ($wrapper) {
     var self = this;
 
+    var link = $('<a>').attr('href', this.url).attr('target', "_blank");
     if (self.$img === undefined) {
       self.$img = $('<img>', {
         width: '100%',
@@ -58,9 +61,12 @@ var H5P = H5P || {};
           self.trigger('loaded');
         }
       });
-    }
 
-    $wrapper.addClass('h5p-image').html(self.$img);
+
+    }
+    link.html(self.$img);
+    //$wrapper.addClass('h5p-image').html(self.$img);
+    $wrapper.addClass('h5p-image').html(link);
   };
 
   /**
