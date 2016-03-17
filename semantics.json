@@ -118,6 +118,7 @@
     "name": "linkWidget",
     "type": "group",
     "widget": "linkWidget",
+    "optional": true,
     "fields": [
       {
         "name": "protocol",
